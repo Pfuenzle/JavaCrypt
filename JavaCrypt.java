@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        test();
         System.out.println("Paste the code in this window!");
         Scanner sc = new Scanner(System.in);
         String in = sc.next();
@@ -56,10 +55,4 @@ public class Main {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selection, selection);
     }
-
-    private static void test()
-    {
-        /*\u002a\u002f\u0053\u0079\u0073\u0074\u0065\u006d\u002e\u006f\u0075\u0074\u002e\u0070\u0072\u0069\u006e\u0074\u006c\u006e\u0028\u0022\u0054\u0065\u0073\u0074\u0022\u0029\u003b\u002f\u002a */
-    }
-
 }
