@@ -1,5 +1,3 @@
-package io.pfuenzle;
-
 /**
  * Created by Pfuenzle on 16.10.2018.
  */
@@ -9,8 +7,9 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.HeadlessException;
 
-public class Main {
+public class JavaCrypt {
 
     public static void main(String[] args) {
         System.out.println("Paste the code in this window!");
@@ -19,7 +18,6 @@ public class Main {
         ArrayList<Character> array = stringToCharArray(in);
         String result = obfuscateCharArray(array);
         System.out.println(result);
-        System.out.println("Copied to Clipboard");
         copyToClipboard(result);
         sc.close();
     }
@@ -51,8 +49,13 @@ public class Main {
 
     private static void copyToClipboard(String in)
     {
-        StringSelection selection = new StringSelection(in);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(selection, selection);
+	try
+	{
+	        StringSelection selection = new StringSelection(in);
+	        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+	        clipboard.setContents(selection, selection);
+	        System.out.println("Copied to Clipboard");
+	}
+	catch (HeadlessException ignored){}
     }
 }
