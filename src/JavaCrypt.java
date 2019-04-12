@@ -12,13 +12,24 @@ import java.awt.HeadlessException;
 public class JavaCrypt {
 
     public static void main(String[] args) {
-        System.out.println("Paste the code in this window!");
+        System.out.println("Paste the code in this window and press enter two times!");
         Scanner sc = new Scanner(System.in);
-        String in = sc.next();
-        ArrayList<Character> array = stringToCharArray(in);
+
+        String codeToCrypt = "";
+
+        while (sc.hasNextLine()) {
+            String nextLine = sc.nextLine();
+            if(nextLine.equals(""))
+                break;
+            codeToCrypt += nextLine;
+        }
+
+        ArrayList<Character> array = stringToCharArray(codeToCrypt);
         String result = obfuscateCharArray(array);
+
         System.out.println(result);
         copyToClipboard(result);
+
         sc.close();
     }
 
@@ -49,13 +60,15 @@ public class JavaCrypt {
 
     private static void copyToClipboard(String in)
     {
-	try
-	{
-	        StringSelection selection = new StringSelection(in);
-	        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-	        clipboard.setContents(selection, selection);
-	        System.out.println("Copied to Clipboard");
-	}
-	catch (HeadlessException ignored){}
+	    try
+	    {
+	            StringSelection selection = new StringSelection(in);
+	            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+	            clipboard.setContents(selection, selection);
+	            System.out.println("Copied to Clipboard");
+	    }
+	    catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
